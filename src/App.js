@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Formulaire from "./composants/Formulaire";
+import WebCm from "./composants/WebCm";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Connexion from "./composants/Connexion";
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+          <Route path="/" element={<Connexion />} />
+          <Route path="/inscription" element={<Formulaire />} />
+          <Route path="/camera-de-surveillance" element={WebCm} />
+      </Routes>
     </div>
   );
+
 }
 
 export default App;
