@@ -3,11 +3,13 @@ import google from '../assets/svg/google.svg'
 import facebook from '../assets/svg/facebook.svg'
 import linkedin from '../assets/svg/linkedin.svg'
 import {useForm} from 'react-hook-form'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Connexion() {
 
     const {register, handleSubmit, reset} = useForm()
-
+    const navigate = useNavigate()
     const connexion = (data) =>{
 
         const field = {
@@ -15,13 +17,30 @@ function Connexion() {
             mdp: data.mdp
         }
         console.log(data)
+        exeConnexion(field)
         reset()
+    }
+
+    const exeConnexion = async (field) =>{
+        try {
+            const response = await axios.post('http://localhost:7575/api/user/connexion/', field)
+            
+            console.log(response)
+            if(response.data['msg'] === "connexion reussi!!!"){
+                navigate('/mon-espace')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <div className='Formulaire'>
 
                 <div className="container">
+                <div className="text">
+                    Connexion à la plateforme virtuelle de l'université Félix Houphouet Boigny
+                </div>
                     <form className="row bg_1" onSubmit={handleSubmit(connexion)}>
 
                         <div className="col-3">
