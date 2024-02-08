@@ -25,6 +25,7 @@ const UpdateProfilUser = () => {
 	const updateProfil = (data) => {
 
 		insertAxios(data)
+		console.log(data)
 
 	}
 
@@ -34,7 +35,7 @@ const UpdateProfilUser = () => {
 
 		formData.append('file', filePhoto)
 		formData.append('nom', data.nom)
-		formData.append('dateNaissance', data.dateNaissance + ' ' + data.lieu)
+		formData.append('dateNaissance', data.dateNaissance)
 		formData.append('email', data.email)
 		formData.append('telephone', data.telephone)
 		formData.append('ufr', data.ufr)
@@ -46,6 +47,8 @@ const UpdateProfilUser = () => {
 		formData.append('id', profil[0]._id)
 
 		// setSpinner(true)
+
+		// console.log(formData.get("filiere"))
 
 		try {
 			const response = await axios.put('http://localhost:7575/api/user/update-profil/', formData,
@@ -200,6 +203,14 @@ const UpdateProfilUser = () => {
 										</div>
 										<div className="col-sm-9 text-secondary">
 											<input type="text" className="form-control" defaultValue={profil[0].niveau} {...register('niveau')} />
+										</div>
+									</div>
+									<div className="row mb-3">
+										<div className="col-sm-3">
+											<h6 className="mb-0">Numéro carte étudiant</h6>
+										</div>
+										<div className="col-sm-9 text-secondary">
+											<input type="text" className="form-control" defaultValue={profil[0].numberCarte} {...register('numberCarte')} />
 										</div>
 									</div>
 									<div className="row mb-3">

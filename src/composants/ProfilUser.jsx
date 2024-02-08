@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import linkedin from '../assets/svg/linkedin.svg'
-import facebook from '../assets/svg/facebook.svg'
-import photo from '../assets/profil.jpg'
+// import facebook from '../assets/svg/facebook.svg'
+// import photo from '../assets/profil.jpg'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,6 +19,7 @@ const ProfilUser = () => {
                 const response = await axios.get(`http://localhost:7575/api/profil/mon-espace/${id}`)
                 if (response.data['msg'] === 'succès') {
                     setProfil(response.data['info'])
+                    // console.log(response.data['info'])
                 }
 
             } catch (error) {
@@ -30,9 +31,9 @@ const ProfilUser = () => {
 
     }, []);
 
-    const handleChangePage = (path) =>{
-        navigate(path, {state:{profil: profil}})
-        window.scroll(0,0)
+    const handleChangePage = (path) => {
+        navigate(path, { state: { profil: profil } })
+        window.scroll(0, 0)
     }
 
 
@@ -73,7 +74,7 @@ const ProfilUser = () => {
                                             Nom & prénoms
                                         </div>
                                         <div className="col-sm-9">
-                                        <h6 className='mb-0'>{profil[0].nom}</h6>
+                                            <h6 className='mb-0'>{profil[0].nom}</h6>
                                         </div>
                                     </div>
                                     <hr />
@@ -82,7 +83,7 @@ const ProfilUser = () => {
                                             E-mail
                                         </div>
                                         <div className="col-sm-9 ">
-                                        <h6 className='mb-0'>{profil[0].email}</h6>
+                                            <h6 className='mb-0'>{profil[0].email}</h6>
                                         </div>
                                     </div>
                                     <hr />
@@ -91,7 +92,7 @@ const ProfilUser = () => {
                                             Téléphone
                                         </div>
                                         <div className="col-sm-9 ">
-                                        <h6 className='mb-0'>{profil[0].telephone}</h6>
+                                            <h6 className='mb-0'>{profil[0].telephone}</h6>
                                         </div>
                                     </div>
                                     <hr />
@@ -100,7 +101,7 @@ const ProfilUser = () => {
                                             UFR
                                         </div>
                                         <div className="col-sm-9">
-                                        <h6 className='mb-0'>{profil[0].ufr}</h6>
+                                            <h6 className='mb-0'>{profil[0].ufr}</h6>
                                         </div>
                                     </div>
                                     <hr />
@@ -109,13 +110,13 @@ const ProfilUser = () => {
                                             Filière
                                         </div>
                                         <div className="col-sm-9 ">
-                                       <h6 className='mb-0'> {profil[0].filiere}</h6>
+                                            <h6 className='mb-0'> {profil[0].filiere}</h6>
                                         </div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-12">
-                                            <a className="btn btn-info " onClick={() =>handleChangePage("/update-profil")}>Modifier mon profil</a>
+                                            <a className="btn btn-info " onClick={() => handleChangePage("/update-profil")}>Modifier mon profil</a>
                                         </div>
                                     </div>
                                 </div>
