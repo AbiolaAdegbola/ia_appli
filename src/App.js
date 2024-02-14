@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Formulaire from "./composants/Formulaire";
-import WebCm from "./composants/WebCm";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Connexion from "./composants/Connexion";
 import ProfilUser from "./composants/ProfilUser";
 import UpdateProfilUser from "./composants/UpdateProfilUser";
 import ModelBlaze from "./composants/ModelBlaze";
+import GestionCampus from "./composants/GestionCampus";
+// import VehicleRecognition from "./composants/ModelVehicule";
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
           <Route path="/inscription" element={<Formulaire />} />
           <Route path="/mon-espace" element={<ProfilUser />} />
           <Route path="/update-profil" element={<UpdateProfilUser />} />
-          <Route path="/camera-de-surveillance" element={WebCm} />
+          <Route path="/gestion-campus" element={<GestionCampus />} />
+          {/* <Route path="/vehicule" element={<VehicleRecognition />} /> */}
       </Routes>
     </div>
   );

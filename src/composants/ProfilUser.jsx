@@ -48,6 +48,7 @@ const ProfilUser = () => {
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         <img src={`http://localhost:7575/image_profil/${profil[0].photo}`} alt="Admin" className="rounded-circle" width="200" height={200} />
+                                        {console.log(`http://localhost:7575/image_profil/${profil[0].photo}`)}
                                         <div className="mt-3">
                                             <h4>{profil[0].nom}</h4>
                                             <p className="text-muted font-size-sm">Etudiant en {profil[0].niveau}</p>
