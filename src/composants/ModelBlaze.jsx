@@ -9,6 +9,7 @@ function RecognitionComponent() {
   const videoRef = useRef();
   const canvasRef = useRef(); 
   const [detectedPeople, setDetectedPeople] = useState([]);
+  let dataListePeopleDetected = []
 
   useEffect(() => {
     
@@ -77,16 +78,44 @@ function RecognitionComponent() {
         const results = resizedDetections.map((d) => {
           return faceMatcher.findBestMatch(d.descriptor);
         });
+        
         results.forEach((result, i) => {
           const box = resizedDetections[i].detection.box;
+          const label = result.toString().split('@]')[0]
           const drawBox = new faceapi.draw.DrawBox(box, {
-            label: result.toString(),
+            label: label,            
           });
+          
           drawBox.draw(canvas);
+
         });
 
         // Mise à jour des personnes détectées
-        setDetectedPeople(results.map(result => result.toString()));
+        
+        dataListePeopleDetected.push(results.map(result => {
+          const label = result.toString().split('@]')
+          let id = ''
+          let taux = ''
+          let nom = ''
+          if (label[1]) {
+            nom = label[0].split(' ')[0]
+            id = label[1].split(' ')[0]
+            taux = label[1].split(' ')[1]
+          }else{
+            nom = label[0].split(' ')[0]
+            taux = label[0].split(' ')[1]
+          }
+          const field = {
+            nom: nom,
+            id: id,
+            taux: taux
+          }
+
+          return field
+          }))
+        
+        setDetectedPeople(dataListePeopleDetected);
+
       }, 100);
     }
 
@@ -96,12 +125,12 @@ function RecognitionComponent() {
   }, [videoStream]);
 
   async function getLabeledFaceDescriptions() {
-    const labels = ["abiola", "akesse", "gore"];
+    // const labels = ["abiola", "akesse", "gore"];
     return Promise.all(
-      imageUrls.map(async (label, index) => {
+      imageUrls.map(async (label) => {
         const descriptions = [];
         for (let i = 1; i <= 2; i++) {
-          const img = await faceapi.fetchImage(`http://localhost:7575/image_profil/${label}`);
+          const img = await faceapi.fetchImage(`http://localhost:7575/image_profil/${label.photo}`);
           // console.log(img)
           const detections = await faceapi
             .detectSingleFace(img)
@@ -109,10 +138,16 @@ function RecognitionComponent() {
             .withFaceDescriptor();
           descriptions.push(detections.descriptor);
         }
-        return new faceapi.LabeledFaceDescriptors(labels[index], descriptions);
+        return new faceapi.LabeledFaceDescriptors(label.nom+'@]'+label._id, descriptions);
       })
     );
   }
+
+
+
+  //traitement des données afin de ne recuperer que les plus pertinantes
+// console.log(dataListePeopleDetected)
+
 
   return (
     
