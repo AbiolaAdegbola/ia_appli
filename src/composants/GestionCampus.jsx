@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/gesCampus.css'
 import logo from '../assets/log.jpg'
+import RecognitionComponent from './ModelBlaze';
+import Card from './Card';
+import Plan3D from './Plan3D';
 
 const GestionCampus = () => {
+
+    const [pageActive, setPageActive] = useState(<Card />);
+    const [stylePageActive, setStylePageActive] = useState("card");
+
+   const handleChangePage = (path, titre) =>{
+        setPageActive(path)
+        setStylePageActive(titre)
+   }
     return (
         <div>
-            <header class="header">
-                <div class="header-content responsive-wrapper">
-                    <div class="header-logo">
+            <header className="header">
+                <div className="header-content responsive-wrapper">
+                    <div className="header-logo">
                         <div>
                             <img src={logo} width={80} />
                         </div>
                     </div>
-                    <div class="header-navigation">
-                        <nav class="header-navigation-links">
+                    <div className="header-navigation">
+                        <nav className="header-navigation-links">
                             <a href="#"> Home </a>
                             <a href="#"> Dashboard </a>
                             <a href="#"> Projects </a>
@@ -21,75 +32,54 @@ const GestionCampus = () => {
                             <a href="#"> Reporting </a>
                             <a href="#"> Users </a>
                         </nav>
-                        <div class="header-navigation-actions">
-                            
-                            <a href="#" class="icon-button">
-                                <i class="ph-gear-bold"></i>
+                        <div className="header-navigation-actions">
+
+                            <a href="#" className="icon-button">
+                                <i className="ph-gear-bold"></i>
                             </a>
-                            <a href="#" class="icon-button">
-                                <i class="ph-bell-bold"></i>
+                            <a href="#" className="icon-button">
+                                <i className="ph-bell-bold"></i>
                             </a>
-                            
+
                         </div>
                     </div>
-                    <a href="#" class="button">
-                        <i class="ph-list-bold"></i>
+                    <a href="#" className="button">
+                        <i className="ph-list-bold"></i>
                         <span>Menu</span>
                     </a>
                 </div>
             </header>
-            <main class="main">
-                <div class="responsive-wrapper">
-                    <div class="main-header">
+            <main className="main">
+                <div className="responsive-wrapper">
+                    <div className="main-header">
                         <h1>Paramètre</h1>
-                        <div class="search">
+                        <div className="search">
                             <input type="text" placeholder="Search" />
                             <button type="submit">
-                                <i class="ph-magnifying-glass-bold"></i>
+                                <i className="ph-magnifying-glass-bold"></i>
                             </button>
                         </div>
                     </div>
-                    
-                    <div class="content">
-                        <div class="content-panel">
-                            <div class="vertical-tabs">                                
-                                <a href="#" class="active">Graphique demographique</a>
+
+                    <div className="content">
+                        <div className="content-panel">
+                            <div className="vertical-tabs">
+                                <a href="#" className={stylePageActive==="card" ? "active":""} onClick={() =>handleChangePage(<Card />, "card")}>Graphique demographique</a>
                                 <a href="#">UFR SSMT</a>
                                 <a href="#">UFR STRM</a>
                                 <a href="#">Cité universitaire campus</a>
                                 <a href="#">Communication</a>
-                                <a href="#" class="">Vue caméra</a>
-                                {/* <a href="#">Productivity</a>
-                                <a href="#">Browser tools</a>
-                                <a href="#">Marketplace</a> */}
+                                <a href="#" className={stylePageActive==="camera" ? "active":""} onClick={() =>handleChangePage(<RecognitionComponent />, "camera")}>Vue caméra</a>
+                                
                             </div>
                         </div>
-                        <div class="content-main">
-                            <div class="card-grid">
-                                <article class="card">
-                                    <div class="card-header">
-                                        <div>
-                                            <span><img src="https://assets.codepen.io/285131/zeplin.svg" /></span>
-                                            <h3>Zeplin</h3>
-                                        </div>
-                                        <label class="toggle">
-                                            <input type="checkbox" checked />
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>Collaboration between designers and developers.</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="#">View integration</a>
-                                    </div>
-                                </article>
-                       
-                            </div>
+                        <div className='containerData'>
+                            {pageActive}
                         </div>
                     </div>
                 </div>
             </main>
+
         </div>
     );
 }

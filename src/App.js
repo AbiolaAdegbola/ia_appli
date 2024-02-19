@@ -7,6 +7,7 @@ import ProfilUser from "./composants/ProfilUser";
 import UpdateProfilUser from "./composants/UpdateProfilUser";
 import ModelBlaze from "./composants/ModelBlaze";
 import GestionCampus from "./composants/GestionCampus";
+import Plan3D from "./composants/Plan3D";
 // import VehicleRecognition from "./composants/ModelVehicule";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
       <Routes>
           <Route path="/" element={<ModelBlaze />} />
+          <Route path="/plan" element={<Plan3D mapContainerId="map"/>} />
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/inscription" element={<Formulaire />} />
           <Route path="/mon-espace" element={<ProfilUser />} />
