@@ -98,8 +98,8 @@ function RecognitionComponent() {
         });
 
         // Mise à jour des personnes détectées        
-        results.length>0 &&
-          ( dataListePeopleDetected.push( results.map(result => {
+        results.length > 0 &&
+          (dataListePeopleDetected.push(results.map(result => {
             const label = result.toString().split('@]')
             let id = ''
             let taux = ''
@@ -117,14 +117,14 @@ function RecognitionComponent() {
               id: id,
               taux: taux
             }
-  
+
             return field
           })
-            ) )
+          ))
 
         setDetectedPeople(dataListePeopleDetected);
 
-        if(dataListePeopleDetected.length>5){
+        if (dataListePeopleDetected.length > 5) {
           sendDataR()
         }
 
@@ -158,26 +158,47 @@ function RecognitionComponent() {
 
 
   //traitement des données afin de ne recuperer que les plus pertinantes
-    const sendDataR = async () => {
-      try {
+  const sendDataR = async () => {
+    try {
 
-        //pretraitement des données
-        const d = dataListePeopleDetected.map((data)=>data[0])
+      //pretraitement des données
+      const d = dataListePeopleDetected.map((data) => data[0])
 
-        // console.log(d)
+      // console.log(d)
 
-        const response = await axios.post(`http://localhost:7775/field`, {data: d})
-        console.log(response)
-        dataListePeopleDetected = []
-        setDetectedPeople(dataListePeopleDetected)
-        
+      const response = await axios.post(`http://localhost:5622/field`, {data: d})
+      console.log(response.data)
 
-      } catch (error) {
+      // Regrouper les éléments par ID
+      // const groupedData = dataListePeopleDetected.reduce((acc, curr) => {
+      //   const id = curr[0].id;
+      //   if (!acc[id]) {
+      //     acc[id] = [];
+      //   }
+      //   acc[id].push(curr[0]);
+      //   return acc;
+      // }, {});
 
-        console.log(error)
-        
-      }
+      // // Filtrer les éléments avec le même ID et conserver l'élément avec le taux le plus élevé
+      // const filteredData = Object.values(groupedData).map(group => {
+      //   const maxTauxElement = group.reduce((maxElement, currentElement) => {
+      //     return currentElement.taux > maxElement.taux ? currentElement : maxElement;
+      //   }, { taux: -Infinity });
+      //   return maxTauxElement;
+      // });
+
+      // console.log("Résultat filtré :", filteredData);
+
+      dataListePeopleDetected = []
+      setDetectedPeople(dataListePeopleDetected)
+
+
+    } catch (error) {
+
+      console.log(error)
+
     }
+  }
 
 
   return (
