@@ -166,7 +166,7 @@ function RecognitionComponent() {
 
       // console.log(d)
 
-      const response = await axios.post(`http://localhost:5622/field`, {data: d})
+      const response = await axios.post(`http://localhost:8899/field`, {data: d})
       console.log(response.data)
 
       // Regrouper les éléments par ID

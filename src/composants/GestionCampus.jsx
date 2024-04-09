@@ -25,12 +25,12 @@ const GestionCampus = () => {
                     </div>
                     <div className="header-navigation">
                         <nav className="header-navigation-links">
-                            <a href="#"> Home </a>
-                            <a href="#"> Dashboard </a>
-                            <a href="#"> Projects </a>
-                            <a href="#"> Tasks </a>
-                            <a href="#"> Reporting </a>
-                            <a href="#"> Users </a>
+                            <a href="#"> Accueil </a>
+                            <a href="#"> Visite </a>
+                            <a href="#"> Professeurs </a>
+                            <a href="#"> Etudiants </a>
+                            <a href="#"> Trafics </a>
+                            {/* <a href="#"> Users </a> */}
                         </nav>
                         <div className="header-navigation-actions">
 
@@ -52,7 +52,7 @@ const GestionCampus = () => {
             <main className="main">
                 <div className="responsive-wrapper">
                     <div className="main-header">
-                        <h1>Paramètre</h1>
+                        <h1></h1>
                         <div className="search">
                             <input type="text" placeholder="Search" />
                             <button type="submit">
@@ -65,11 +65,11 @@ const GestionCampus = () => {
                         <div className="content-panel">
                             <div className="vertical-tabs">
                                 <a href="#" className={stylePageActive==="card" ? "active":""} onClick={() =>handleChangePage(<Card />, "card")}>Graphique demographique</a>
-                                <a href="#">UFR SSMT</a>
+                                {/* <a href="#">UFR SSMT</a>
                                 <a href="#">UFR STRM</a>
                                 <a href="#">Cité universitaire campus</a>
-                                <a href="#">Communication</a>
-                                <a href="#" className={stylePageActive==="camera" ? "active":""} onClick={() =>handleChangePage(<RecognitionComponent />, "camera")}>Vue caméra</a>
+                                <a href="#">Communication</a> */}
+                                <a className={stylePageActive==="camera" ? "active":""} onClick={() =>handleChangePage(<RecognitionComponent />, "camera")}>Vue caméra</a>
                                 
                             </div>
                         </div>
