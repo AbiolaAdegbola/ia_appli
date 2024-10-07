@@ -112,9 +112,9 @@ const Formulaire = () => {
                                 filePreview !== false ? (
                                     <div>
                                         {/* Affichage de l'aperçu de l'image */}
-                                        <img src={filePreview} className="rounded-circle p-1 bg-primary" width="200" height={200} />
+                                        <img src={filePreview} className="rounded-circle p-1 bg-primary" style={{objectFit:"cover"}}  width="200" height={200} />
                                     </div>
-                                ) : (<img alt="photo" className="rounded-circle p-1 bg-primary" width="200" height={200} />)
+                                ) : (<img alt="photo" className="rounded-circle p-1 bg-primary" style={{objectFit:"cover"}} width="200" height={200} />)
                             }
                             <input type="file" id="newPhoto" style={{ display: "none" }} accept='image/*' onChange={(e) => handleFileChange(e)} />
                             <label htmlFor="newPhoto"><FaCamera style={{ fontSize: "22px", color: "blue", cursor: "pointer" }} /></label>

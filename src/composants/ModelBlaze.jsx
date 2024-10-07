@@ -128,7 +128,7 @@ function RecognitionComponent() {
           sendDataR()
         }
 
-      }, 100);
+      }, 10);
     }
 
     if (videoStream) {
@@ -166,8 +166,8 @@ function RecognitionComponent() {
 
       // console.log(d)
 
-      const response = await axios.post(`http://localhost:8899/field`, {data: d})
-      console.log(response.data)
+      const response = await axios.post(`http://localhost:7775/field`, {data: d})
+      // console.log(response.data)
 
       // Regrouper les éléments par ID
       // const groupedData = dataListePeopleDetected.reduce((acc, curr) => {
@@ -189,8 +189,8 @@ function RecognitionComponent() {
 
       // console.log("Résultat filtré :", filteredData);
 
-      dataListePeopleDetected = []
-      setDetectedPeople(dataListePeopleDetected)
+      // dataListePeopleDetected = []
+      // setDetectedPeople(dataListePeopleDetected)
 
 
     } catch (error) {
