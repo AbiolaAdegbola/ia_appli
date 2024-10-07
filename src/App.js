@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import Formulaire from "./composants/Formulaire";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Connexion from "./composants/Connexion";
 import ProfilUser from "./composants/ProfilUser";
@@ -20,7 +19,7 @@ function App() {
           <Route path="/" element={<ModelBlaze />} />
           <Route path="/plan" element={<Plan3D />} />
           <Route path="/connexion" element={<Connexion />} />
-          {/* <Route path="/inscription" element={<Formulaire />} /> */}
+          <Route path="/inscription" element={<Formulaire />} />
           <Route path="/mon-espace" element={<ProfilUser />} />
           <Route path="/update-profil" element={<UpdateProfilUser />} />
           <Route path="/gestion-campus" element={<GestionCampus />} />
